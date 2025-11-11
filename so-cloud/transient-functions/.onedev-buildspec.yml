@@ -1,0 +1,47 @@
+version: 40
+jobs:
+- name: Build and Publish
+  steps:
+  - !CheckoutStep
+    name: Checkout Code
+    cloneCredential: !DefaultCredential {}
+    withLfs: false
+    withSubmodules: false
+    condition: SUCCESSFUL
+    optional: false
+  - !CommandStep
+    name: Build and Publish
+    runInContainer: true
+    image: '@server@/toolkit/nscript:latest'
+    interpreter: !DefaultInterpreter
+      commands: |
+        npm config set @@toolkit:registry https://git.paulandsophie.uk/toolkit/~npm/
+        npm config set -- '//git.paulandsophie.uk/toolkit/~npm/:_authToken' "@job_token@:@secret:read-toolkit@"
+
+        npm install
+        nscript build
+    registryLogins:
+    - registryUrl: '@server@'
+      userName: '@job_token@'
+      passwordSecret: read-toolkit
+    useTTY: true
+    condition: SUCCESSFUL
+    optional: false
+  - !BuildImageStep
+    name: Docker Build
+    dockerfile: Dockerfile
+    output: !RegistryOutput
+      tags: '@server@/so-cloud/transient-functions:latest'
+    registryLogins:
+    - registryUrl: '@server@'
+      userName: '@job_token@'
+      passwordSecret: publish-package
+    condition: SUCCESSFUL
+    optional: false
+  triggers:
+  - !BranchUpdateTrigger
+    branches: master
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400

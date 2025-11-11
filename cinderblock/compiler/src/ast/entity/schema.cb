@@ -1,0 +1,13 @@
+namespace Ast.Entity {
+  using Metadata;
+
+  export struct Schema {
+    name: string;
+    properties: [Property];
+    namespace: string;
+    using: [string];
+
+    exported: bool;
+    location: CodeLocation;
+  }
+}

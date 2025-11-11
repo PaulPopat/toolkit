@@ -1,0 +1,12 @@
+namespace Ast.Expression {
+  using Ast;
+  using Metadata;
+
+  export struct If {
+    check: Expression;
+    if: [Statement];
+    else: [Statement];
+
+    location: CodeLocation;
+  }
+}

@@ -1,0 +1,11 @@
+namespace Ast.Expression {
+  using Ast;
+  using Metadata;
+
+  export struct System {
+    parameters: [Expression];
+    out_length: Expression;
+
+    location: CodeLocation;
+  }
+}

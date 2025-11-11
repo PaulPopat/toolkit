@@ -1,0 +1,129 @@
+<app>
+  <path location="node_modules/.bin" />
+
+  <task name="components">
+    <task name="build">
+      <script type="shell/bash">
+        rm -rf dist
+      </script>
+      <script>
+        const esbuild = require("esbuild");
+        const path = require("path");
+        const fs = require("fs");
+
+        esbuild.build({
+          stdin: {
+            contents: require("./builder-code")(),
+            resolveDir: path.resolve("src"),
+            loader: "ts",
+          },
+          bundle: true,
+          platform: "browser",
+          outdir: path.resolve("dist"),
+          format: "esm",
+          minify: true,
+          splitting: true,
+          loader: { ".ttf": "file", ".woff2": "file", ".woff": "file", ".eot": "file", ".svg": "file", ".css": "file" },
+        });
+      </script>
+    </task>
+    <task name="dev">
+      <script type="shell/bash">
+        rm -rf dist
+      </script>
+      <script>
+        const esbuild = require("esbuild");
+        const path = require("path");
+        const fs = require("fs");
+        const code_builder = require("./builder-code");
+        const { HttpServer } = require("http-server");
+
+        const start = async () => {
+          try {
+            console.log("Components directory changed. Building from scratch.");
+            const ctx = await esbuild.context({
+              stdin: {
+                contents: code_builder(),
+                resolveDir: path.resolve("src"),
+                loader: "ts",
+              },
+              bundle: true,
+              platform: "browser",
+              outdir: path.resolve("dist"),
+              format: "esm",
+              minify: false,
+              splitting: true,
+              loader: {
+                ".ttf": "file",
+                ".woff2": "file",
+                ".woff": "file",
+                ".eot": "file",
+                ".svg": "file",
+                ".css": "file",
+              },
+              plugins: [
+                {
+                  name: "build-monitor",
+                  setup(build) {
+                    let count = 0;
+                    build.onEnd((result) => {
+                      if (result.errors?.length) console.log(result.errors.join("\n"));
+                      else console.log("Build Succeeded");
+                    });
+                  },
+                },
+              ],
+            });
+
+            await ctx.watch();
+
+            return async () => {
+              await ctx.dispose();
+            };
+          } catch (err) {
+            console.error(err);
+            return async () => {};
+          }
+        };
+
+        async function main() {
+          const server = new HttpServer();
+          server.listen(8080, () => {
+            console.log("Server is now listening on port 8080");
+          });
+
+          let stop = await start();
+
+          console.log("Watching for changes.");
+          fs.watch(path.resolve("src/components"), async (type) => {
+            if (type !== "rename") return;
+            await stop();
+            stop = await start();
+          });
+        }
+
+        main();
+      </script>
+    </task>
+    <task name="publish">
+      <env name="PUBLISHED_VERSION" type="shell/bash">
+        <!-- prettier-ignore -->
+        npm view @toolkit/components version || echo "0.0.0"
+      </env>
+      <env name="SHOULD_PUBLISH" type="text/javascript">
+        <!-- prettier-ignore -->
+        const fs = require('node:fs');
+        const child_process = require('node:child_process');
+        const package = JSON.parse(fs.readFileSync('package.json', 'utf8'));
+        if (package.version !== process.env.PUBLISHED_VERSION)
+          console.log('TRUE');
+        else console.log('FALSE');
+      </env>
+      <script type="shell/bash">
+        if [ "$SHOULD_PUBLISH" == "TRUE" ]; then
+          npm publish
+        fi
+      </script>
+    </task>
+  </task>
+</app>

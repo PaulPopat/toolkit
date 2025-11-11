@@ -1,0 +1,24 @@
+{
+  "name": "@so-cloud/transient-functions",
+  "version": "0.0.1",
+  "description": "Transient code running",
+  "repository": {
+    "type": "git",
+    "url": "https://git.paulandsophie.uk/so-cloud/transient-functions"
+  },
+  "license": "ISC",
+  "author": "paulpopat",
+  "main": "dist/index.js",
+  "scripts": {},
+  "devDependencies": {
+    "@types/node": "^22.18.6",
+    "esbuild": "^0.25.10",
+    "typescript": "^5.9.2"
+  },
+  "dependencies": {
+    "@toolkit/fs-db": "^0.0.1",
+    "@toolkit/moulding-tin": "^0.0.2",
+    "@toolkit/puristee": "^0.0.1",
+    "@toolkit/safe-type": "^2.2.2"
+  }
+}

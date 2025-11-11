@@ -1,0 +1,13 @@
+namespace Ast.Expression {
+  using Ast;
+  using Metadata;
+
+  export struct Lambda {
+    paramters: [Parameter];
+    body: [Statement];
+    returns?: Type;
+
+    c_name: string;
+    location: CodeLocation;
+  }
+}

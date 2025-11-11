@@ -1,0 +1,34 @@
+version: 40
+jobs:
+- name: Build and Publish
+  steps:
+  - !CheckoutStep
+    name: Checkout Code
+    cloneCredential: !DefaultCredential {}
+    withLfs: false
+    withSubmodules: false
+    condition: SUCCESSFUL
+    optional: false
+  - !CommandStep
+    name: Build and Publish
+    runInContainer: true
+    image: node:lts
+    interpreter: !DefaultInterpreter
+      commands: |
+        npm config set @@toolkit:registry https://git.paulandsophie.uk/toolkit/~npm/
+        npm config set -- '//git.paulandsophie.uk/toolkit/~npm/:_authToken' "@job_token@:@secret:access-token@"
+       
+        npm install @@ipheion/nscript -g
+        npm install
+        nscript wholemeal:build
+        nscript wholemeal:publish
+    useTTY: true
+    condition: SUCCESSFUL
+    optional: false
+  triggers:
+  - !BranchUpdateTrigger
+    branches: master
+  retryCondition: never
+  maxRetries: 3
+  retryDelay: 30
+  timeout: 14400

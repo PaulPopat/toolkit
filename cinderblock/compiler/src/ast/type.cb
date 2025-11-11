@@ -1,0 +1,12 @@
+namespace Ast {
+  using Ast.Type;
+
+  export enum Type {
+    Function: Function;
+    Iterable: Iterable;
+    Primitive: Primitive;
+    Reference: Reference;
+    Schema: Schema;
+    Use: Use;
+  }
+}

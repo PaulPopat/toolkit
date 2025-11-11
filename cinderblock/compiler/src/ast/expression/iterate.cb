@@ -1,0 +1,13 @@
+namespace Ast.Expression {
+  using Ast;
+  using Metadata;
+
+  export struct Iterate {
+    over: Expression;
+    as: string;
+    using: [Statement];
+
+    struct_name: string;
+    location: CodeLocation;
+  }
+}

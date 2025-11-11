@@ -1,0 +1,6 @@
+{
+  "name": "compiler",
+  "files": ["./src/metadata/code-location.cb", "./src/parser/token.cb"],
+  "targets": ["linux"],
+  "bin": "bin"
+}

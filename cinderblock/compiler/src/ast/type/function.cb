@@ -1,0 +1,11 @@
+namespace Ast.Type {
+  using Metadata;
+  using Ast;
+
+  export struct Function {
+    parameters: [Parameter];
+    returns: [Type];
+
+    location: CodeLocation
+  }
+}

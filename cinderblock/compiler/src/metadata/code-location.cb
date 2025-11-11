@@ -1,0 +1,20 @@
+namespace Metadata {
+  using std.string;
+
+  export struct CodeLocation {
+    file_name: string;
+    start_line: uint;
+    start_column: uint;
+    end_line: uint;
+    end_column: uint;
+  }
+
+  fn AsString(self: CodeLocation): string {
+    return "\nFile: "
+      .concat(self.file_name)
+      .concat("\nLine: ")
+      .concat(self.start_line.to_string())
+      .concat("\nColumn: ")
+      .concat(self.start_column.to_string());
+  }
+}

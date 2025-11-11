@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Debug Tests",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/bin/linux/std_tests",
+      "environment": [{ "name": "config", "value": "Debug" }],
+      "cwd": "${workspaceFolder}"
+    }
+  ]
+}

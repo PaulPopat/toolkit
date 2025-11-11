@@ -1,0 +1,27 @@
+{
+  "name": "@toolkit/components",
+  "version": "0.0.1",
+  "description": "Web Components!",
+  "main": "dist/index.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "https://git.paulandsophie.uk/toolkit/components"
+  },
+  "devDependencies": {
+    "@toolkit/js-model": "^0.0.2",
+    "@types/node": "^24.0.13",
+    "esbuild": "^0.25.5",
+    "http-server": "^14.1.1",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@toolkit/safe-type": "^2.2.2",
+    "@toolkit/set": "^0.0.3",
+    "preact": "^10.26.9",
+    "remixicon": "^4.6.0"
+  },
+  "prettier": {
+    "printWidth": 120
+  }
+}

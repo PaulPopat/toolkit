@@ -1,0 +1,13 @@
+namespace Ast {
+  using Ast.Entity;
+
+  export enum Entity {
+    BuiltInFunction: BuiltInFunction;
+    Enum: Enum;
+    Function: Function;
+    Schema: Schema;
+    Struct: Struct;
+    Test: Test;
+    Using: Using;
+  }
+}

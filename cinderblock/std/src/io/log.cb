@@ -1,0 +1,6 @@
+namespace std.io {
+  export unsafe fn log(data: string): int {
+    input -> data.concat("\n");
+    return so_print(input, input.length());
+  }
+}

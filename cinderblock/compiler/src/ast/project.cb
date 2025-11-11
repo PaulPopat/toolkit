@@ -1,0 +1,7 @@
+namespace Ast {
+  using Metadata;
+
+  export struct Project {
+    code: [Namespace];
+  }
+}

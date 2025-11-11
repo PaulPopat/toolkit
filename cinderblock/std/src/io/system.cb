@@ -1,0 +1,5 @@
+namespace std.io {
+  unsafe fn so_print(data: string, length: int): int {
+    return system(1i, 1i, data, length);
+  }
+}

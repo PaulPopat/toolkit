@@ -1,0 +1,5 @@
+namespace std.cast {
+  export fn to_char(self: int): char {
+    return self;
+  }
+}

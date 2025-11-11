@@ -1,0 +1,5 @@
+namespace std.cast {
+  export fn to_uint(self: int): uint {
+    return self;
+  }
+}

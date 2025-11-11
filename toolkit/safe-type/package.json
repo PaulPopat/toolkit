@@ -1,0 +1,27 @@
+{
+  "name": "@toolkit/safe-type",
+  "version": "2.2.2",
+  "description": "Typesafety with strong inference",
+  "main": "dist/mod.js",
+  "types": "dist/mod.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "keywords": [
+    "safe-type",
+    "type",
+    "types",
+    "type-check",
+    "assert"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
+  },
+  "files": [
+    "dist/*"
+  ]
+}

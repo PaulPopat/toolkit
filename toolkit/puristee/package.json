@@ -1,0 +1,32 @@
+{
+  "name": "@toolkit/puristee",
+  "version": "0.0.1",
+  "description": "Easy type serialisation",
+  "main": "dist/mod.js",
+  "types": "dist/mod.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@toolkit/esbuild-workers": "^0.0.2",
+    "@types/mime-types": "^2.1.2",
+    "@types/uuid": "^10.0.0",
+    "@types/ws": "^8.5.10",
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
+  },
+  "dependencies": {
+    "@toolkit/fs-db": "^0.0.1",
+    "@toolkit/safe-type": "^2.2.2",
+    "mime-types": "^3.0.1",
+    "parse-multipart-data": "^1.5.0",
+    "uuid": "^10.0.0",
+    "ws": "^8.17.1"
+  },
+  "files": [
+    "dist/*"
+  ]
+}

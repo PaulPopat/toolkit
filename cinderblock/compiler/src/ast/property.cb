@@ -1,0 +1,12 @@
+namespace Ast {
+  using Metadata;
+
+  export struct Property {
+    name: string;
+    type: Type;
+    optional: bool;
+
+    c_name: string;
+    location: CodeLocation;
+  }
+}

@@ -1,0 +1,12 @@
+namespace Ast.Expression {
+  using Ast;
+  using Metadata;
+
+  export struct Operation {
+    left: Expression;
+    operator: string;
+    right: Expression;
+
+    location: CodeLocation;
+  }
+}

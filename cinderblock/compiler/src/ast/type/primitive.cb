@@ -1,0 +1,10 @@
+namespace Ast.Type {
+  using Metadata;
+  using Ast;
+
+  export struct Primitive {
+    name: string;
+
+    location: CodeLocation
+  }
+}

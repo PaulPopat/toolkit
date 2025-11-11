@@ -1,0 +1,26 @@
+{
+  // See https://go.microsoft.com/fwlink/?LinkId=733558
+  // for the documentation about the tasks.json format
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "type": "shell",
+      "label": "Build Tests",
+      "command": "cinderblock test",
+      "group": {
+        "kind": "build",
+        "isDefault": false
+      }
+    },
+    {
+      "type": "shell",
+      "label": "Run Tests",
+      "command": "./bin/linux/std_tests",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
+      "dependsOn": "Build Tests"
+    }
+  ]
+}

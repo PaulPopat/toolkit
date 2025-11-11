@@ -1,0 +1,20 @@
+namespace Ast.Expression {
+  using Ast;
+  using Metadata;
+
+  export struct LiteralValue {
+    value: string;
+    location: CodeLocation;
+  }
+
+  export enum Literal {
+    String: LiteralValue;
+    Int: LiteralValue;
+    Char: LiteralValue;
+    Float: LiteralValue;
+    Double: LiteralValue;
+    Long: LiteralValue;
+    Bool: LiteralValue;
+    Null: LiteralValue;
+  }
+}

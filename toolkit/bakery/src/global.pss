@@ -1,0 +1,8 @@
+@js const [theme, spec] = require("./global/theme");
+
+@import ":`url('${spec.font_url}')`";
+
+body {
+  margin: 0;
+  theme.colour("body");
+}

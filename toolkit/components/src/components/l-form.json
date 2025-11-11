@@ -1,0 +1,9 @@
+{
+  "attributes": [
+    "url",
+    "method",
+    "data-type",
+    "headers",
+    "success-url"
+  ]
+}

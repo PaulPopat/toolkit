@@ -1,0 +1,22 @@
+namespace Ast {
+  using Ast.Expression;
+
+  export enum Expression {
+    Access: Access;
+    Brackets: Brackets;
+    Default: Default;
+    If: If;
+    Invokation: Invokation;
+    Is: Is;
+    Iterate: Iterate;
+    Lambda: Lambda;
+    Literal: Literal;
+    Make: Make;
+    Match: Match;
+    Operator: Operator;
+    Out: Out;
+    Pick: Pick;
+    Reference: Reference;
+    System: System;
+  }
+}

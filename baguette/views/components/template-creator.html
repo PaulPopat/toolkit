@@ -1,0 +1,37 @@
+<u-use var=":this.state.page?.template.name" name="layout">
+  <l-row>
+    <l-col xs="12">
+      <f-singleselect
+        name="template"
+        options=":this.state.data.templates.map(a => ({ text: a, value: a }))"
+        onValueChanged="this.state.layout = this.value"
+        prefill=":this.state.layout"
+      >
+        <span slot="label">Template</span>
+      </f-singleselect>
+    </l-col>
+    <l-col xs="12">
+      <u-if check=":this.state.layout">
+        <u-fetch url="/api/templates/{{this.state.layout}}" name="layout_format">
+          <d-card>
+            <span slot="title">Content</span>
+            <l-row>
+              <u-each subject=":this.state.layout_format.fields" name="field">
+                <l-col xs="12">
+                  <l-templated
+                    use=":`/components/item-${this.state.field.type}`"
+                    name=":this.state.field.name"
+                    prefill=":this.state.page?.content[this.state.field.name] ?? window.empty"
+                    remote
+                  >
+                    <u-text use=":this.state.field.name"></u-text>
+                  </l-templated>
+                </l-col>
+              </u-each>
+            </l-row>
+          </d-card>
+        </u-fetch>
+      </u-if>
+    </l-col>
+  </l-row>
+</u-use>

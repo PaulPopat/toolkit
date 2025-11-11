@@ -1,0 +1,14 @@
+namespace std.testing {
+  using std.string;
+  using std.io;
+
+  export unsafe fn expect_equals(a: string, b: string) {
+    result -> a.equals(b);
+    return if (result) {
+      return true;
+    } else {
+      side "Error: Expected ".concat(a).concat(" to equal ").concat(b).log();
+      return false;
+    };
+  }
+}

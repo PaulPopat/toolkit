@@ -1,0 +1,11 @@
+namespace Ast.Statement {
+  using Metadata;
+  using Ast;
+
+  export struct Sub {
+    name: string;
+    equals: Expression;
+
+    location: CodeLocation
+  }
+}

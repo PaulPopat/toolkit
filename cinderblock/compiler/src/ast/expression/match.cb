@@ -1,0 +1,17 @@
+namespace Ast.Expression {
+  using Ast;
+  using Metadata;
+
+  export struct Matched {
+    on: string;
+    using: [Statement];
+  }
+
+  export struct Match {
+    subject: Expression;
+    as: string;
+    using: [Matched];
+
+    location: CodeLocation;
+  }
+}

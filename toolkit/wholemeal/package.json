@@ -1,0 +1,34 @@
+{
+  "name": "@toolkit/wholemeal",
+  "version": "0.0.2",
+  "description": "A language for creating web components",
+  "main": "./dist/mod.js",
+  "scripts": {},
+  "keywords": [
+    "web-components"
+  ],
+  "dependencies": {
+    "@toolkit/html": "^0.0.2",
+    "@toolkit/js-model": "^0.0.2",
+    "@toolkit/safe-type": "^2.2.2",
+    "comment-json": "^4.2.3",
+    "element-internals-polyfill": "^1.3.8",
+    "form-request-submit-polyfill": "^2.0.0",
+    "loader-utils": "^3.2.1",
+    "schema-utils": "^4.2.0"
+  },
+  "devDependencies": {
+    "@types/loader-utils": "^2.0.4",
+    "@types/node": "^24.0.10",
+    "custom-elements-manifest": "^2.0.0",
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3",
+    "webpack": "^5.88.2"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "files": [
+    "dist/*"
+  ]
+}

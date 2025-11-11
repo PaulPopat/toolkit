@@ -1,0 +1,51 @@
+{
+  "name": "cinderblock",
+  "version": "0.0.1",
+  "description": "A new programming language",
+  "scripts": {
+    "build": "tsc",
+    "test": "node --test --import tsx ./src/**/*.test.ts",
+    "package": "npm run test && npm run build && pkg .",
+    "test:all": "npm run build && cd ./tests && ./test.sh",
+    "test:all-osx": "npm run build && cd ./tests && OS=darwin ./test.sh",
+    "test:hello-world": "npm run build && cd ./tests/hello-world && node ../../bin/index.js compile",
+    "test:chained-operators": "npm run build && cd ./tests/chained-operators && node ../../bin/index.js compile",
+    "test:if-expressions": "npm run build && cd ./tests/if-expressions && node ../../bin/index.js compile",
+    "test:embedded-c": "npm run build && cd ./tests/embedded-c && node ../../bin/index.js compile",
+    "test:function-overloading": "npm run build && cd ./tests/function-overloading && node ../../bin/index.js compile",
+    "test:lambdas": "npm run build && cd ./tests/lambdas && node ../../bin/index.js compile",
+    "test:partial-invokation": "npm run build && cd ./tests/partial-invokation && node ../../bin/index.js compile",
+    "test:enums": "npm run build && cd ./tests/enums && node ../../bin/index.js compile",
+    "test:effuse": "npm run build && cd ../effuse-cinderblock && cinderblock workspace compile"
+  },
+  "private": true,
+  "bin": {
+    "cinderblock": "./bin/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cinderblock-lang/cinderblock-compiler.git"
+  },
+  "author": "Paul Taylor",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/cinderblock-lang/cinderblock-compiler/issues"
+  },
+  "homepage": "https://github.com/cinderblock-lang/cinderblock-compiler#readme",
+  "devDependencies": {
+    "@types/node": "^20.8.10",
+    "pkg": "^5.8.1",
+    "tsx": "^4.11.0",
+    "typescript": "^5.4.5"
+  },
+  "dependencies": {
+    "yargs": "^17.7.2",
+    "zod": "^3.22.4"
+  },
+  "pkg": {
+    "targets": [
+      "node18-linux-x64"
+    ],
+    "outputPath": "pkg"
+  }
+}

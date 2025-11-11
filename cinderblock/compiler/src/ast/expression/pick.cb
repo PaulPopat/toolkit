@@ -1,0 +1,12 @@
+namespace Ast.Expression {
+  using Ast;
+  using Metadata;
+
+  export struct Pick {
+    enum: string;
+    key: string;
+    using: [Statement];
+
+    location: CodeLocation;
+  }
+}

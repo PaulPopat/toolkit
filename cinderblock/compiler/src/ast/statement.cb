@@ -1,0 +1,12 @@
+namespace Ast {
+  using Ast.Statement;
+
+  export enum Statement {
+    Assign: Assign;
+    Panic: Panic;
+    Raw: Raw;
+    Return: Return;
+    Side: Side;
+    Sub: Sub;
+  }
+}

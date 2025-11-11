@@ -1,0 +1,10 @@
+namespace Ast.Statement {
+  using Metadata;
+  using Ast;
+
+  export struct Panic {
+    value: Expression;
+
+    location: CodeLocation
+  }
+}

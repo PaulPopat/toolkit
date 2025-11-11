@@ -1,0 +1,20 @@
+namespace std.string {
+  using std.testing;
+  using std.cast;
+
+  fn to_string(target: uint): string {
+    return if (target > 9i) {
+      return "".concat((target / 10i).to_uint().to_string()).add_char(to_char((target % 10i) + 48i));
+    } else {
+      return "".add_char(to_char(target + 48i));
+    };
+  }
+
+  test "std.string.to_string Writes a integer lower than ten" {
+    return 9i.to_uint().to_string().expect_equals("9");
+  }
+
+  test "std.string.to_string Writes a multi digit integer" {
+    return 123i.to_uint().to_string().expect_equals("123");
+  }
+}

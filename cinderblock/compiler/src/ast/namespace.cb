@@ -1,0 +1,11 @@
+namespace Ast {
+  using Metadata;
+
+  export struct Namespace {
+    name: string;
+    exported: bool;
+    contents: [Entity];
+
+    location: CodeLocation;
+  }
+}

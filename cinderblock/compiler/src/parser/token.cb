@@ -1,0 +1,248 @@
+namespace Compiler.Tokeniser.StringTraversal {
+  using std.string.utf_8;
+   
+  export struct Character {
+    character: int;
+    line: uint;
+    column: uint;
+  }
+
+  export struct CharacterNext {
+    offset: int;
+    line: uint;
+    column: uint;
+  }
+
+  export struct CharacterResult {
+    done: bool;
+    result?: Character;
+    next?: CharacterNext;
+  }
+
+  export fn TraverseString(target: string) {
+    iterable -> target.to_iterable();
+    return fn (next?: CharacterNext) -> {
+      character_result -> iterable(
+        if (next == default(CharacterNext)) {
+          return 0i;
+        } else {
+          return next.offset;
+        }
+      );
+      character -> character_result.result;
+
+      line -> if (next == default(CharacterNext)) return 0i; else return next.line;
+      column -> if (next == default(CharacterNext)) return 0i; else return next.column;
+
+      return make CharacterNext {
+        assign result = make Character {
+          assign character = character;
+          assign line = line;
+          assign column = column;
+        };
+        assign done = character.done;
+        assign next = make CharacterNext {
+          assign offset = character_result.next;
+          assign column = if (character != '\n') return column + 1i; else return 0i;
+          assign line = if (character == '\n') return line + 1i; else return line;
+        };
+      };
+    };
+  }
+}
+
+namespace Compiler.Tokeniser {
+  using std.error;
+  using std.string.utf_8;
+  using Metadata;
+  using Compiler.Tokeniser.StringTraversal;
+
+  export struct Symbol {
+    ç: CodeLocation;
+    text: string;
+  }
+
+  export enum Token {
+    Word: Symbol;
+    String: Symbol;
+    Maths: Symbol;
+    Error: Error;
+  }
+
+  export struct TokenResult {
+    done: bool;
+    result?: Token; 
+    next?: CharacterNext;
+  }
+
+  fn is_maths_character(character: int): bool {
+    return character == '=' ||
+           character == '-' ||
+           character == '/' ||
+           character == '\\' ||
+           character == '+' ||
+           character == '?' ||
+           character == '*' ||
+           character == '<' ||
+           character == '>' ||
+           character == '&' ||
+           character == '%' ||
+           character == '|' ||
+           character == '!' ||
+           character == '^' ||
+           character == '~';
+  }
+
+  fn is_word_character(character: int): bool {
+    return (character >= 48i && character <= 57i) ||
+           (character >= 65i && character <= 90i) ||
+           (character >= 97i && character <= 122i) ||
+           character == 95i;
+  }
+
+  fn is_string_character(character: int): bool {
+    return character == '"' || character == '\'' || character == '`';
+  }
+
+  fn extract_word(self: [Character], start: CharacterNext, file_name: string): TokenResult {
+    internal -> fn (self: [Character], current: CharacterNext, result: string) -> {
+      character_result -> self(current);
+      character -> character_result.result.character
+      location -> make Location {
+        assign file_name = file_name;
+        assign start_line = start.line;
+        assign start_column = start.column;
+        assign end_line = current.line;
+        assign end_column = current.column;
+      };
+
+      done -> make TokenResult {
+        assign done = false;
+        assign next = current;
+        assign result = pick Token.Word {
+          return make Symbol {
+            assign text = result;
+            assign location = location;
+          };
+        };
+      };
+
+      return if (character_result.done) {
+        return done;
+      } else if (!character.is_word_character()) {
+        return done;
+      } else {
+        return self.internal(character_result.next, result.add_character(character));
+      };
+    };
+
+    return self.internal(start, "");
+  }
+
+  fn extract_maths(self: [Character], start: CharacterNext, file_name: string): TokenResult {
+    internal -> fn (self: [Character], current: CharacterNext, result: string) -> {
+      character_result -> self(current);
+      character -> character_result.result.character
+      location -> make Location {
+        assign file_name = file_name;
+        assign start_line = start.line;
+        assign start_column = start.column;
+        assign end_line = current.line;
+        assign end_column = current.column;
+      };
+
+      done -> make TokenResult {
+        assign done = false;
+        assign next = current;
+        assign result = pick Token.Maths {
+          return make Symbol {
+            assign text = result;
+            assign location = location;
+          };
+        };
+      };
+
+      return if (character_result.done) {
+        return done;
+      } else if (!character.is_maths_character()) {
+        return done;
+      } else {
+        return self.internal(character_result.next, result.add_character(character));
+      };
+    };
+
+    return self.internal(start, "");
+  }
+
+  fn extract_string(self: [Character], start: CharacterNext, file_name: string): TokenResult {
+    start_character = self(start).result.character;
+
+    internal -> fn (self: [Character], current: CharacterNext, result: string) -> {
+      character_result -> self(current);
+      character -> character_result.result.character
+      location -> make Location {
+        assign file_name = file_name;
+        assign start_line = start.line;
+        assign start_column = start.column;
+        assign end_line = current.line;
+        assign end_column = current.column;
+      };
+
+      done -> make TokenResult {
+        assign done = false;
+        assign next = current;
+        assign result = pick Token.String {
+          return make Symbol {
+            assign text = result;
+            assign location = location;
+          };
+        };
+      };
+
+      return if (character_result.done) {
+        return done;
+      } else if (character == start_character) {
+        return done;
+      } else {
+        return self.internal(character_result.next, result.add_character(character));
+      };
+    };
+
+    return self.internal(start, "");
+  }
+
+  export fn SplitTokens(code: string, file_name: string): (next?: CharacterNext) -> TokenResult {
+    iterator -> TraverseString(code);
+    word -> extract_word(file_name);
+    maths -> extract_maths(file_name);
+    string -> extract_string(file_name);
+
+    return fn (next?: CharacterNext) -> {
+      char_result = iterator(next)
+      char -> char_result.result.character;
+
+      return if (char_result.done) {
+        return make TokenResult {
+          assign done = true;
+        };
+      } else if (char.is_word_character()) {
+        return iterator.word(next);
+      } else if (char.is_maths_character()) {
+        return iterator.maths(next);
+      } else if (char.is_string_character()) {
+        return iterator.string(next);
+      } else {
+        return make TokenResult {
+          assign done = false;
+          assign next = char_result.next;
+          assign result = pick Token.Error {
+            return make Error {
+              assign message = "Unexpected character ".add_character(char);
+              assign code = 2i;
+            };
+          };
+        };
+      };
+    };
+  }
+}

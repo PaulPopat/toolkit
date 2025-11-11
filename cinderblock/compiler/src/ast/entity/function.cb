@@ -1,0 +1,18 @@
+namespace Ast.Entity {
+  using Metadata;
+  using Ast;
+
+  export struct Function {
+    name: string;
+    unsafe: bool;
+    parameters: [Parameter];
+    returns?: Type;
+    content: [Statement];
+    namespace: string;
+    using: [string];
+
+    exported: bool;
+    c_name: string;
+    location: CodeLocation;
+  }
+}

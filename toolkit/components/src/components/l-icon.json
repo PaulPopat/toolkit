@@ -1,0 +1,11 @@
+{
+  "attributes": [
+    "name",
+    "fill",
+    "plain",
+    "tag",
+    "colour",
+    "text",
+    "spin"
+  ]
+}

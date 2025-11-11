@@ -1,0 +1,68 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Compile",
+      "skipFiles": ["<node_internals>/**"],
+      "runtimeExecutable": "cinderblock",
+      "runtimeArgs": ["compile"],
+      "cwd": "${workspaceFolder}/${input:project}"
+    },
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Compile Tests",
+      "skipFiles": ["<node_internals>/**"],
+      "runtimeExecutable": "cinderblock",
+      "runtimeArgs": ["test"],
+      "cwd": "${workspaceFolder}/${input:project}"
+    },
+    {
+      "name": "Debug App C",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/${input:project}/bin/linux/app",
+      "cwd": "${workspaceFolder}/${input:project}/bin/linux",
+      "preLaunchTask": "Compile App"
+    },
+    {
+      "name": "Debug Test C",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/${input:project}/bin/linux/app_tests",
+      "cwd": "${workspaceFolder}/${input:project}/bin/linux"
+    }
+  ],
+  "inputs": [
+    {
+      "id": "project",
+      "type": "command",
+      "command": "extension.commandvariable.pickStringRemember",
+      "args": {
+        "key": "project",
+        "description": "The project to open",
+        "options": [
+          "chained-operators",
+          "enums",
+          "externals",
+          "functions",
+          "hello-world",
+          "if-expressions",
+          "lambdas",
+          "loop-concatination",
+          "loops",
+          "partial-invokation",
+          "simple-maths",
+          "tests",
+          "specific-examples/string-equals",
+          "none-int-loops"
+        ]
+      }
+    }
+  ]
+}

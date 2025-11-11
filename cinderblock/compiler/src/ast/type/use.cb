@@ -1,0 +1,11 @@
+namespace Ast.Type {
+  using Metadata;
+  using Ast;
+
+  export struct Use {
+    name: string;
+    constraints: [Type];
+
+    location: CodeLocation
+  }
+}

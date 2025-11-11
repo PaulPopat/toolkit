@@ -1,0 +1,11 @@
+namespace Ast.Expression {
+  using Ast;
+  using Metadata;
+
+  export struct Invokation {
+    subject: Expression;
+    parameters: [Expression];
+
+    location: CodeLocation;
+  }
+}

@@ -1,0 +1,145 @@
+namespace std.string.utf_8 {
+  using std.string;
+  using std.testing;
+  using std.iterable;
+  using std.cast;
+  
+  export struct StringIterableContext {
+    done: bool;
+    result?: int;
+    next: int;
+  }
+
+  fn isolate_bits(target: use int | char = T, skip: int, take: int): int {
+    mask -> (1i << take) - 1i;
+    start -> target >> skip;
+    return start & mask;
+  }
+
+  fn extract_four_bytes(subject: string, index: int): int {
+    return
+      (subject.get_char(index).isolate_bits(0i, 4i) << 18i) +
+      (subject.get_char(index + 1i).isolate_bits(0i, 6i) << 12i) +
+      (subject.get_char(index + 2i).isolate_bits(0i, 6i) << 6i) +
+      (subject.get_char(index + 3i).isolate_bits(0i, 6i));
+  }
+
+  fn extract_three_bytes(subject: string, index: int): int {
+    return
+      (subject.get_char(index).isolate_bits(0i, 4i) << 12i) +
+      (subject.get_char(index + 1i).isolate_bits(0i, 6i) << 6i) +
+      (subject.get_char(index + 2i).isolate_bits(0i, 6i));
+  }
+
+  fn extract_two_bytes(subject: string, index: int): int {
+    return
+      (subject.get_char(index).isolate_bits(0i, 5i) << 6i) +
+      (subject.get_char(index + 1i).isolate_bits(0i, 6i));
+  }
+
+  fn extract_one_bytes(subject: string, index: int): int {
+    return subject.get_char(index);
+  }
+
+  export fn get_character(target: string, index: int): StringIterableContext {
+    start -> target.get_char(index);
+    size -> target.length();
+
+    return if (start.isolate_bits(3i, 5i) == 0b11110) {
+      return make StringIterableContext {
+        assign next = index + 4i;
+        assign result = target.extract_four_bytes(index);
+        assign done = index + 4i >= size;
+      };
+    } else if (start.isolate_bits(4i, 4i) == 0b1110) {
+      return make StringIterableContext {
+        assign next = index + 3i;
+        assign result = target.extract_three_bytes(index);
+        assign done = index + 3i >= size;
+      };
+    } else if (start.isolate_bits(5i, 3i) == 0b110) {
+      return make StringIterableContext {
+        assign next = index + 2i;
+        assign result = target.extract_two_bytes(index);
+        assign done = index + 2i >= size;
+      };
+    } else {
+      return make StringIterableContext {
+        assign next = index + 1i;
+        assign result = target.extract_one_bytes(index);
+        assign done = index + 1i >= size;
+      };
+    };
+  }
+
+  export fn to_iterable(target: string): (index: int) -> StringIterableContext {
+    return fn (index: int) -> {
+      return target.get_character(index);
+    };
+  }
+
+  test "std.string.utf_8.to_iterable Gets a group of character codes" {
+    return (
+      iterate("0Ƕ私😁".to_iterable() as character) {
+        return character;
+      }
+    ).reduce(
+      "",
+      fn (character: int, result: string) ->
+        result.add_character(character + 1i)
+    ).expect_equals("1Ƿ秂");
+  }
+
+  fn add_four_bytes(subject: string, target: int): string {
+    return subject
+      .add_char(to_char(0b11110000 + target.isolate_bits(18i, 3i)))
+      .add_char(to_char(0b10000000 + target.isolate_bits(12i, 6i)))
+      .add_char(to_char(0b10000000 + target.isolate_bits(6i, 6i)))
+      .add_char(to_char(0b10000000 + target.isolate_bits(0i, 6i)));
+  }
+
+  fn add_three_bytes(subject: string, target: int): string {
+    return subject
+      .add_char(to_char(0b11100000 + target.isolate_bits(12i, 4i)))
+      .add_char(to_char(0b10000000 + target.isolate_bits(6i, 6i)))
+      .add_char(to_char(0b10000000 + target.isolate_bits(0i, 6i)));
+  }
+
+  fn add_two_bytes(subject: string, target: int): string {
+    return subject
+      .add_char(to_char(0b11000000 + target.isolate_bits(6i, 5i)))
+      .add_char(to_char(0b10000000 + target.isolate_bits(0i, 6i)));
+  }
+
+  fn add_one_bytes(subject: string, target: int): string {
+    return subject.add_char(to_char(target));
+  }
+
+  export fn add_character(subject: string, target: int): string {
+    return if (target >= (65536i)) {
+      return subject.add_four_bytes(target);
+    } else if (target >= (2048i)) {
+      return subject.add_three_bytes(target);
+    } else if (target >= 255i) {
+      return subject.add_two_bytes(target);
+    } else {
+      return subject.add_one_bytes(target);
+    };
+  }
+
+  test "std.string.utf_8.add_character Creats a single byte char" {
+    return "".add_character(48i).expect_equals("0");
+  }
+
+  test "std.string.utf_8.add_character Creates a two byte char" {
+    return "".add_character(502i).expect_equals("Ƕ");
+  }
+
+  test "std.string.utf_8.add_character Creates a three byte char" {
+    return "".add_character(31169i).expect_equals("私");
+  }
+
+  test "std.string.utf_8.add_character Creates a four byte char" {
+    return "".add_character(128516i).expect_equals("😄");
+  }
+}

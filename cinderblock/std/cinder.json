@@ -1,0 +1,20 @@
+{
+  "name": "std",
+  "files": [
+    "./src/iterable/count.cb",
+    "./src/iterable/reduce.cb",
+    "./src/string/utf-8.cb",
+    "./src/string/equals.cb",
+    { "linux": "./src/io/system.cb" },
+    "./src/io/log.cb",
+    "./src/testing/string-equals.cb",
+    { "linux": "./src/fs/system.cb" },
+    "./src/fs/file.cb",
+    "./src/string/number.cb",
+    "./src/cast/to-char.cb",
+    "./src/cast/to-uint.cb"
+  ],
+  "targets": ["linux", "macos", "windows", "android", "ios", "wasm"],
+  "bin": "bin",
+  "no_std": true
+}

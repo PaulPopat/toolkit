@@ -1,0 +1,88 @@
+namespace std.fs {
+  using std.testing;
+  using std.error;
+
+  export struct FileStats {
+    size: ulong;
+    modified: ulong;
+    created: ulong;
+  }
+
+  export struct ReadableFile {
+    handle: int;
+  }
+
+  export struct WriteableFile {
+    handle: int;
+  }
+
+  export schema File {
+    handle: int;
+  }
+
+  export enum ReadableFileResult {
+    success: ReadableFile;
+    error: Error;
+  }
+
+  export enum WriteableFileResult {
+    success: WriteableFile;
+    error: Error;
+  }
+
+  export unsafe fn open_read(path: string): ReadableFileResult {
+    handle -> so_open(path, 0i);
+
+    return if (handle < 0i) {
+      return pick ReadableFileResult.error {
+        return make Error {
+          assign message = "Failed to read file";
+          assign code = 1i;
+        };
+      };
+    } else {
+      return pick ReadableFileResult.success {
+        return make ReadableFile {
+          assign handle = handle;
+        };
+      };
+    };
+  }
+
+  export unsafe fn stat(file: File): FileStats {
+    return make FileStats {
+      system_stats -> so_stat(file.handle);
+      assign size = system_stats.st_size;
+      assign modified = system_stats.st_mtime;
+      assign created = system_stats.st_ctime;
+    };
+  }
+
+  export unsafe fn read(file: File, length: int): string {
+    stats -> file.stat();
+    return so_read(file.handle, stats.size);
+  }
+
+  export unsafe fn open_write(path: string): WriteableFile {
+    handle -> so_open(path, 1i);
+
+    return if (handle < 0i) {
+      return pick WriteableFileResult.error {
+        return make Error {
+          assign message = "Failed to read writeable file";
+          assign code = 1i;
+        };
+      };
+    } else {
+      return pick WriteableFileResult.success {
+        return make WriteableFile {
+          assign handle = handle;
+        };
+      };
+    };
+  }
+
+  export unsafe fn write(file: WriteableFile, data: string): string {
+    return so_write(file.handle, data, data.length());
+  }
+}

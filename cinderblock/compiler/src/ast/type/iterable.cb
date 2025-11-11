@@ -1,0 +1,12 @@
+namespace Ast.Type {
+  using Metadata;
+  using Ast;
+  using Ast.Entity;
+
+  export struct Iterable {
+    type: Type;
+    result: Struct;
+
+    location: CodeLocation
+  }
+}

@@ -1,0 +1,12 @@
+namespace Ast.Statement {
+  using Metadata;
+  using Ast;
+
+  export struct Raw {
+    c_code: string;
+    reference: string;
+    creates: Type;
+
+    location: CodeLocation
+  }
+}

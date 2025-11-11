@@ -1,0 +1,11 @@
+{
+  "attributes": [
+    "sensitive",
+    "prefill",
+    "name",
+    "required",
+    "validate",
+    "title-colour",
+    "body-colour"
+  ]
+}

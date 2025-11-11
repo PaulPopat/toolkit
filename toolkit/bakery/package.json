@@ -1,0 +1,29 @@
+{
+  "name": "@toolkit/bakery",
+  "version": "1.0.0",
+  "description": "This is a cool library of web components for creating modern PWAs. It is a work in progress but check out [https://bakery.popatux.co.uk/tutorial](https://bakery.popatux.co.uk/tutorial) for some examples.",
+  "scripts": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "dependencies": {
+    "@toolkit/safe-type": "^2.2.2",
+    "@toolkit/wholemeal": "^0.0.2",
+    "ejs": "^3.1.9",
+    "highlight.js": "^11.8.0",
+    "monaco-editor": "^0.44.0",
+    "monaco-editor-webpack-plugin": "^7.1.0",
+    "wicg-inert": "^3.1.2"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
+  },
+  "prettier": {
+    "htmlWhitespaceSensitivity": "ignore"
+  },
+  "main": "dist/index.js",
+  "files": [
+    "dist/*"
+  ]
+}

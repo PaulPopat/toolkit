@@ -1,0 +1,24 @@
+{
+  "files.exclude": {
+    "**/.git": true,
+    "**/.svn": true,
+    "**/.hg": true,
+    "**/CVS": true,
+    "**/.DS_Store": true,
+    "**/Thumbs.db": true,
+    ".next": true,
+    ".vscode": true,
+    "node_modules": true,
+    "next-env.d.ts": true,
+    ".gitignore": true,
+    "tsconfig.json": true,
+    "tsconfig.server.json": true,
+    "package-lock.json": true,
+    "dist": true,
+    ".env": true,
+    ".babelrc": true,
+    ".dockerignore": true,
+    "public/icons": true,
+    "resources/header-images.tsx": true
+  }
+}

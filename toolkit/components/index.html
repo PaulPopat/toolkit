@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script type="module" src="./dist/stdin.js" crossorigin="anonymous"></script>
+
+    <style>
+      body {
+        opacity: 0;
+        transition: opacity 100ms;
+      }
+    </style>
+  </head>
+  <body>
+    <l-theme from=":fetch('./theme.json')">
+      <l-header>
+        <a href="/" data-toggle="sosso-loving">I Love The Sosso</a>
+        <a slot="right" href="/">She Is Perfection</a>
+        <l-container slot="sosso-loving">
+          <l-row>
+            <l-col xs="12">
+              <l-typography>
+                <p>I Love The Sosso</p>
+              </l-typography>
+            </l-col>
+          </l-row>
+        </l-container>
+        <span slot="mobile-title">Test Website</span>
+        <l-container slot="mobile-nav">
+          <l-row>
+            <l-col xs="12">
+              <l-typography>
+                <p>
+                  <a href="/">I Love The Sosso</a>
+                </p>
+                <p>
+                  <a href="/">She Is Perfection</a>
+                </p>
+              </l-typography>
+            </l-col>
+          </l-row>
+        </l-container>
+      </l-header>
+      <l-container>
+        <l-row>
+          <l-col xs="12" sm="8" md="6" lg="4" xl="2">
+            <l-typography> <h4>I Get Smaller</h4> </l-typography>
+          </l-col>
+          <l-col xs="2" sm="4" md="6" lg="8" xl="10">
+            <l-typography> <p>I Get Bigger</p> </l-typography>
+          </l-col>
+          <l-col xs="2" sm="4" md="6" lg="8" xl="10">
+            <l-icon name="arrow-left" colour="contrast" tag="h4" spin></l-icon>
+          </l-col>
+        </l-row>
+        <l-row>
+          <l-col xs="12" lg="6">
+            <l-card>
+              <img
+                slot="title"
+                src="https://imgs.search.brave.com/z3EbyL0YmUpK6kDkyEBCeAaCwQG-ptNljr9rSOjyqb8/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTMx/NjI4OTc4OC9waG90/by9wb3NpdGl2ZS1j/YXNzZXR0ZS1yYXBp/ZC10ZXN0LWZvci1j/b3ZpZC0xOS10ZXN0/LXJlc3VsdC1ieS11/c2luZy1yYXBpZC10/ZXN0LWRldmljZS1m/b3ItY292aWQtMTku/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PW5ER0RKNElpR3FO/eUNhRFhQVFdYamsx/X2U0clMwdmtHNnJz/NTBuWGdjbkk9"
+              />
+              <l-typography>
+                <p>
+                  I love the Sosso I love the Sosso I love the Sosso I love the Sosso I love the Sosso I love the Sosso
+                  I love the Sosso I love the Sosso I love the Sosso I love the Sosso I love the Sosso I love the Sosso
+                  I love the Sosso I love the Sosso I love the Sosso I love the Sosso I love the Sosso I love the Sosso
+                  I love the Sosso I love the Sosso I love the Sosso.
+                </p>
+
+                <a href="#modal-trigger">Open the Modal</a>
+
+                <a href="#offcanvas-trigger">Open the OffCanvas</a>
+              </l-typography>
+            </l-card>
+          </l-col>
+          <l-col xs="12" lg="6">
+            <l-accordion open>
+              <span slot="title">I Love Sosso</span>
+              <l-typography>
+                <p>
+                  I love the Sosso I love the Sosso I love the Sosso I love the Sosso I love the Sosso I love the Sosso
+                  I love the Sosso I love the Sosso I love the Sosso I love the Sosso I love the Sosso I love the Sosso
+                  I love the Sosso I love the Sosso I love the Sosso I love the Sosso I love the Sosso I love the Sosso
+                  I love the Sosso I love the Sosso I love the Sosso.
+                </p>
+              </l-typography>
+            </l-accordion>
+            <l-accordion>
+              <span slot="title">Lorem Ipsum</span>
+              <l-typography>
+                <p>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate tortor mauris, ac blandit
+                  lectus ullamcorper et. Phasellus eget scelerisque orci. Fusce id purus eget mi congue vulputate. Nunc
+                  tincidunt tortor vitae dolor scelerisque, sed tristique nisi dictum. Sed ipsum lacus, vulputate quis
+                  sem sed, tristique porttitor elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra,
+                  per inceptos himenaeos. Morbi tincidunt eget risus at ullamcorper. In id ornare urna. Aliquam erat
+                  volutpat. Donec vulputate eu elit vel pellentesque. Nunc laoreet massa vel luctus mattis. Pellentesque
+                  at justo tristique, euismod leo at, faucibus nisl. Ut urna dolor, consequat et nunc id, scelerisque
+                  dignissim augue. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris et congue odio, at
+                  euismod sem. Mauris sagittis, enim in volutpat tincidunt, eros sapien ornare lacus, sollicitudin
+                  auctor dolor justo tincidunt nibh.
+                </p>
+                <p>
+                  Nam varius scelerisque facilisis. Mauris vel magna ante. Integer ut magna scelerisque, maximus mi non,
+                  faucibus eros. Curabitur aliquet tortor quis eros semper elementum. Curabitur ultricies auctor enim,
+                  in egestas nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis
+                  egestas. Sed nec pharetra augue. Nam porta nibh vestibulum lectus eleifend mollis.
+                </p>
+                <p>
+                  Cras nec quam arcu. Aenean sit amet arcu sit amet ante consectetur molestie. Maecenas blandit volutpat
+                  ex nec efficitur. Aliquam et dui metus. Aliquam enim lorem, iaculis ac lorem at, consequat faucibus
+                  mauris. Donec eget erat eget mauris cursus molestie. Morbi fermentum, ligula ut posuere facilisis, mi
+                  augue aliquam turpis, nec sodales magna metus nec odio. Quisque vitae lacinia felis. Ut nibh ligula,
+                  posuere nec mi vel, consectetur tempor felis. Proin libero massa, bibendum a velit in, posuere rutrum
+                  ex. Suspendisse potenti. Ut eu ligula eu augue suscipit bibendum. Ut condimentum lacinia velit ac
+                  varius. Maecenas sit amet leo et dui tristique facilisis vel eget justo. Etiam sed leo convallis
+                  libero pretium rhoncus a suscipit metus. Nunc sit amet eros eros.
+                </p>
+                <p>
+                  Nullam luctus sodales lacus, tempus sollicitudin lorem vulputate at. Aenean ut odio nec velit placerat
+                  lacinia sed et dolor. Donec finibus lectus sit amet quam accumsan viverra. Vestibulum risus elit,
+                  fringilla a imperdiet vitae, ullamcorper id lacus. Maecenas lobortis elementum dolor a accumsan. Duis
+                  non turpis dui. Sed tristique tristique dignissim. Maecenas laoreet auctor metus eu bibendum. Nam
+                  lobortis velit quis nibh aliquam dignissim. Aenean pellentesque augue non dolor laoreet bibendum. Sed
+                  maximus congue est id ultrices. In laoreet aliquam quam, ac molestie odio vehicula dignissim.
+                  Suspendisse ultricies urna vestibulum nisi vulputate hendrerit. Mauris sit amet elit eget risus
+                  rhoncus ullamcorper a a arcu. Integer pellentesque fringilla arcu, vitae tincidunt ex finibus ut. Ut
+                  turpis leo, tempus quis tincidunt sit amet, cursus vel metus.
+                </p>
+                <p>
+                  Maecenas in augue neque. Praesent aliquet turpis in massa porttitor varius. Praesent elit ex, ultrices
+                  nec dictum blandit, sodales in justo. Aenean efficitur euismod tempor. Vestibulum molestie efficitur
+                  massa nec condimentum. Phasellus pretium sapien a iaculis ultrices. Vestibulum at tincidunt nisi.
+                  Nullam laoreet diam a erat pharetra, vitae consequat diam tincidunt. Donec eleifend malesuada est
+                  ultrices fermentum. Pellentesque at elit at lectus commodo vehicula in quis purus. Maecenas ut purus
+                  semper, porta augue ac, tincidunt augue.
+                </p>
+              </l-typography>
+            </l-accordion>
+          </l-col>
+          <l-col xs="12">
+            <l-buttongroup>
+              <l-button>This</l-button>
+              <l-button colour="body">This</l-button>
+              <l-button colour="feature">Is A Button</l-button>
+              <l-button colour="highlight">Group</l-button>
+              <l-button colour="contrast">Stuff</l-button>
+            </l-buttongroup>
+          </l-col>
+          <l-col xs="12">
+            <l-button>These</l-button>
+            <l-button colour="body">Are</l-button>
+            <l-button colour="feature">Some</l-button>
+            <l-button colour="highlight">Buttons</l-button>
+            <l-button colour="contrast">Stuff</l-button>
+          </l-col>
+          <l-col xs="12">
+            <l-form id="test-form">
+              <l-row no-padding>
+                <l-col xs="12">
+                  <l-textbox name="test" validate="^[a-z]+$" required sensitive>
+                    I love the Sosso!
+                    <span slot="required">This input is required</span>
+                    <span slot="invalid">Invalid input</span>
+                  </l-textbox>
+                </l-col>
+                <l-col xs="12">
+                  <l-button type="submit">Submit</l-button>
+                </l-col>
+              </l-row>
+            </l-form>
+          </l-col>
+        </l-row>
+        <script>
+          document.getElementById("test-form").addEventListener("submitted", (e) => {
+            console.log(e);
+          });
+        </script>
+      </l-container>
+
+      <l-modal hash="modal-trigger">
+        <span slot="title">Hello world</span>
+        <l-typography>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate tortor mauris, ac blandit lectus
+            ullamcorper et. Phasellus eget scelerisque orci. Fusce id purus eget mi congue vulputate. Nunc tincidunt
+            tortor vitae dolor scelerisque, sed tristique nisi dictum. Sed ipsum lacus, vulputate quis sem sed,
+            tristique porttitor elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+            himenaeos. Morbi tincidunt eget risus at ullamcorper. In id ornare urna. Aliquam erat volutpat. Donec
+            vulputate eu elit vel pellentesque. Nunc laoreet massa vel luctus mattis. Pellentesque at justo tristique,
+            euismod leo at, faucibus nisl. Ut urna dolor, consequat et nunc id, scelerisque dignissim augue. Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit. Mauris et congue odio, at euismod sem. Mauris sagittis, enim in
+            volutpat tincidunt, eros sapien ornare lacus, sollicitudin auctor dolor justo tincidunt nibh.
+          </p>
+          <p>
+            Nam varius scelerisque facilisis. Mauris vel magna ante. Integer ut magna scelerisque, maximus mi non,
+            faucibus eros. Curabitur aliquet tortor quis eros semper elementum. Curabitur ultricies auctor enim, in
+            egestas nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+            Sed nec pharetra augue. Nam porta nibh vestibulum lectus eleifend mollis.
+          </p>
+          <p>
+            Cras nec quam arcu. Aenean sit amet arcu sit amet ante consectetur molestie. Maecenas blandit volutpat ex
+            nec efficitur. Aliquam et dui metus. Aliquam enim lorem, iaculis ac lorem at, consequat faucibus mauris.
+            Donec eget erat eget mauris cursus molestie. Morbi fermentum, ligula ut posuere facilisis, mi augue aliquam
+            turpis, nec sodales magna metus nec odio. Quisque vitae lacinia felis. Ut nibh ligula, posuere nec mi vel,
+            consectetur tempor felis. Proin libero massa, bibendum a velit in, posuere rutrum ex. Suspendisse potenti.
+            Ut eu ligula eu augue suscipit bibendum. Ut condimentum lacinia velit ac varius. Maecenas sit amet leo et
+            dui tristique facilisis vel eget justo. Etiam sed leo convallis libero pretium rhoncus a suscipit metus.
+            Nunc sit amet eros eros.
+          </p>
+          <p>
+            Nullam luctus sodales lacus, tempus sollicitudin lorem vulputate at. Aenean ut odio nec velit placerat
+            lacinia sed et dolor. Donec finibus lectus sit amet quam accumsan viverra. Vestibulum risus elit, fringilla
+            a imperdiet vitae, ullamcorper id lacus. Maecenas lobortis elementum dolor a accumsan. Duis non turpis dui.
+            Sed tristique tristique dignissim. Maecenas laoreet auctor metus eu bibendum. Nam lobortis velit quis nibh
+            aliquam dignissim. Aenean pellentesque augue non dolor laoreet bibendum. Sed maximus congue est id ultrices.
+            In laoreet aliquam quam, ac molestie odio vehicula dignissim. Suspendisse ultricies urna vestibulum nisi
+            vulputate hendrerit. Mauris sit amet elit eget risus rhoncus ullamcorper a a arcu. Integer pellentesque
+            fringilla arcu, vitae tincidunt ex finibus ut. Ut turpis leo, tempus quis tincidunt sit amet, cursus vel
+            metus.
+          </p>
+          <p>
+            Maecenas in augue neque. Praesent aliquet turpis in massa porttitor varius. Praesent elit ex, ultrices nec
+            dictum blandit, sodales in justo. Aenean efficitur euismod tempor. Vestibulum molestie efficitur massa nec
+            condimentum. Phasellus pretium sapien a iaculis ultrices. Vestibulum at tincidunt nisi. Nullam laoreet diam
+            a erat pharetra, vitae consequat diam tincidunt. Donec eleifend malesuada est ultrices fermentum.
+            Pellentesque at elit at lectus commodo vehicula in quis purus. Maecenas ut purus semper, porta augue ac,
+            tincidunt augue.
+          </p>
+        </l-typography>
+      </l-modal>
+
+      <l-offcanvas hash="offcanvas-trigger">
+        <span slot="title">Hello world</span>
+        <l-typography>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin vulputate tortor mauris, ac blandit lectus
+            ullamcorper et. Phasellus eget scelerisque orci. Fusce id purus eget mi congue vulputate. Nunc tincidunt
+            tortor vitae dolor scelerisque, sed tristique nisi dictum. Sed ipsum lacus, vulputate quis sem sed,
+            tristique porttitor elit. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
+            himenaeos. Morbi tincidunt eget risus at ullamcorper. In id ornare urna. Aliquam erat volutpat. Donec
+            vulputate eu elit vel pellentesque. Nunc laoreet massa vel luctus mattis. Pellentesque at justo tristique,
+            euismod leo at, faucibus nisl. Ut urna dolor, consequat et nunc id, scelerisque dignissim augue. Lorem ipsum
+            dolor sit amet, consectetur adipiscing elit. Mauris et congue odio, at euismod sem. Mauris sagittis, enim in
+            volutpat tincidunt, eros sapien ornare lacus, sollicitudin auctor dolor justo tincidunt nibh.
+          </p>
+          <p>
+            Nam varius scelerisque facilisis. Mauris vel magna ante. Integer ut magna scelerisque, maximus mi non,
+            faucibus eros. Curabitur aliquet tortor quis eros semper elementum. Curabitur ultricies auctor enim, in
+            egestas nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.
+            Sed nec pharetra augue. Nam porta nibh vestibulum lectus eleifend mollis.
+          </p>
+          <p>
+            Cras nec quam arcu. Aenean sit amet arcu sit amet ante consectetur molestie. Maecenas blandit volutpat ex
+            nec efficitur. Aliquam et dui metus. Aliquam enim lorem, iaculis ac lorem at, consequat faucibus mauris.
+            Donec eget erat eget mauris cursus molestie. Morbi fermentum, ligula ut posuere facilisis, mi augue aliquam
+            turpis, nec sodales magna metus nec odio. Quisque vitae lacinia felis. Ut nibh ligula, posuere nec mi vel,
+            consectetur tempor felis. Proin libero massa, bibendum a velit in, posuere rutrum ex. Suspendisse potenti.
+            Ut eu ligula eu augue suscipit bibendum. Ut condimentum lacinia velit ac varius. Maecenas sit amet leo et
+            dui tristique facilisis vel eget justo. Etiam sed leo convallis libero pretium rhoncus a suscipit metus.
+            Nunc sit amet eros eros.
+          </p>
+          <p>
+            Nullam luctus sodales lacus, tempus sollicitudin lorem vulputate at. Aenean ut odio nec velit placerat
+            lacinia sed et dolor. Donec finibus lectus sit amet quam accumsan viverra. Vestibulum risus elit, fringilla
+            a imperdiet vitae, ullamcorper id lacus. Maecenas lobortis elementum dolor a accumsan. Duis non turpis dui.
+            Sed tristique tristique dignissim. Maecenas laoreet auctor metus eu bibendum. Nam lobortis velit quis nibh
+            aliquam dignissim. Aenean pellentesque augue non dolor laoreet bibendum. Sed maximus congue est id ultrices.
+            In laoreet aliquam quam, ac molestie odio vehicula dignissim. Suspendisse ultricies urna vestibulum nisi
+            vulputate hendrerit. Mauris sit amet elit eget risus rhoncus ullamcorper a a arcu. Integer pellentesque
+            fringilla arcu, vitae tincidunt ex finibus ut. Ut turpis leo, tempus quis tincidunt sit amet, cursus vel
+            metus.
+          </p>
+          <p>
+            Maecenas in augue neque. Praesent aliquet turpis in massa porttitor varius. Praesent elit ex, ultrices nec
+            dictum blandit, sodales in justo. Aenean efficitur euismod tempor. Vestibulum molestie efficitur massa nec
+            condimentum. Phasellus pretium sapien a iaculis ultrices. Vestibulum at tincidunt nisi. Nullam laoreet diam
+            a erat pharetra, vitae consequat diam tincidunt. Donec eleifend malesuada est ultrices fermentum.
+            Pellentesque at elit at lectus commodo vehicula in quis purus. Maecenas ut purus semper, porta augue ac,
+            tincidunt augue.
+          </p>
+        </l-typography>
+      </l-offcanvas>
+    </l-theme>
+  </body>
+</html>

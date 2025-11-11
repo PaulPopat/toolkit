@@ -1,0 +1,10 @@
+namespace Ast.Type {
+  using Metadata;
+  using Ast;
+
+  export struct Reference {
+    name: string;
+
+    location: CodeLocation
+  }
+}

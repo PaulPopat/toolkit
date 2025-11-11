@@ -1,0 +1,10 @@
+namespace Ast.Expression {
+  using Ast;
+  using Metadata;
+
+  export struct Out {
+    type: Type;
+
+    location: CodeLocation;
+  }
+}

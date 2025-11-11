@@ -1,0 +1,34 @@
+{
+  "name": "nandemo",
+  "version": "0.0.1",
+  "description": "",
+  "main": "dist/server/app.js",
+  "scripts": {
+    "build": "node ./build.js",
+    "dev": "npm run build && node ."
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.0",
+    "@types/node": "^22.16.0",
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
+  },
+  "prettier": {
+    "htmlWhitespaceSensitivity": "ignore"
+  },
+  "dependencies": {
+    "@toolkit/bakery": "^1.0.0",
+    "@toolkit/safe-type": "^2.2.2",
+    "axios": "^1.8.1",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "express-openid-connect": "^2.17.1",
+    "open-graph-scraper": "^6.9.0",
+    "preact": "^10.25.4",
+    "preact-iso": "^2.9.0",
+    "uuid": "^11.1.0"
+  }
+}

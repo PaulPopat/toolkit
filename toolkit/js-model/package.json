@@ -1,0 +1,16 @@
+{
+  "name": "@toolkit/js-model",
+  "version": "0.0.2",
+  "main": "./dist/index.js",
+  "scripts": {},
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
+  },
+  "files": [
+    "dist/*"
+  ]
+}

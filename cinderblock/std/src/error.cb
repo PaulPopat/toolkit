@@ -1,0 +1,6 @@
+namespace std.error {
+  export struct Error {
+    message: string;
+    code: uint;
+  }
+}

@@ -1,0 +1,17 @@
+namespace Ast.Entity {
+  using Metadata;
+  using Ast;
+
+  export struct BuiltInFunction {
+    name: string;
+    unsafe: bool;
+    parameters: [Parameter];
+    returns: Type;
+    source: string;
+    requires: [string];
+    allocates: bool;
+
+    c_name: string;
+    location: CodeLocation;
+  }
+}

@@ -1,0 +1,39 @@
+namespace std.fs {
+  struct so_stat {
+    st_dev: ulong;
+    st_ino: ulong;
+    st_mode: ushort;
+    st_nlink: uint;
+    st_uid: uint;
+    st_gid: uint;
+    st_size: ulong;
+    st_blksize: uint;
+    st_blocks: ulong;
+    st_mtime: ulong;
+    st_mtime_nsec: uint;
+    st_atime: ulong;
+    st_atime_nsec: uint;
+    st_ctime: ulong;
+    st_ctime_nsec: uint;
+  }
+
+  unsafe fn so_open(path: string, flags: int) {
+    return system(2i, path, flags);
+  }
+
+  unsafe fn so_read(handle: int, length: int): string {
+    return system(0i, handle, out: string, length)[length];
+  }
+
+  unsafe fn so_stat(handle: int): so_stat {
+    return system(5i, handle, out: so_stat);
+  }
+
+  unsafe fn so_close(handle: int): int {
+    return system(3i, handle);
+  }
+
+  unsafe fn so_write(handle: int, data: string, length: int): int {
+    return system(1i, handle, data, length);
+  }
+}

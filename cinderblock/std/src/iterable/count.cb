@@ -1,0 +1,21 @@
+namespace std.iterable {
+  export struct CountContext {
+    done: bool;
+    result?: int;
+    next?: int;
+  }
+
+  export fn count(target: int): (index: int) -> CountContext {
+    return fn (index?: int) -> make CountContext {
+      final_index -> if (index == default(int)) {
+        return 0i;
+      } else {
+        return index;
+      };
+
+      assign done = final_index >= target;
+      assign result = final_index;
+      assign next = final_index + 1i;
+    };
+  }
+}

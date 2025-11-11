@@ -1,0 +1,36 @@
+{
+  "name": "@toolkit/nscript",
+  "version": "0.0.6",
+  "description": "",
+  "bin": {
+    "nscript": "bin/app.js"
+  },
+  "scripts": {
+    "build": "node ./build.js"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "prettier": {
+    "htmlWhitespaceSensitivity": "ignore"
+  },
+  "dependencies": {
+    "@toolkit/safe-type": "^2.2.2",
+    "cli-color": "^2.0.4",
+    "clui": "^0.3.6",
+    "jsdom": "^26.0.0",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@types/cli-color": "^2.0.6",
+    "@types/clui": "^0.3.4",
+    "@types/jsdom": "^21.1.7",
+    "@types/node": "^24.0.10",
+    "@types/yargs": "^17.0.33",
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
+  },
+  "files": [
+    "bin/*"
+  ]
+}

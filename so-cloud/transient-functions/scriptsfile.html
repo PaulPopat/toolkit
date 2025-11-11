@@ -1,0 +1,48 @@
+<app>
+  <path location="node_modules/.bin" />
+
+  <task name="build">
+    <env name="APP_DIR" type="text/javascript">
+      <!-- prettier-ignore -->
+      const path = require("node:path");
+        
+      console.log(path.resolve("dist"))
+    </env>
+    <script>
+      const path = require("node:path");
+      const fs = require("node:fs/promises");
+
+      fs.rm(process.env.APP_DIR, { recursive: true })
+        .catch(() => {})
+        .finally(() => fs.mkdir(process.env.APP_DIR));
+    </script>
+    <script>
+      const esbuild = require("esbuild");
+      const path = require("node:path");
+      const fs = require("node:fs/promises");
+
+      const app_dir = process.env.APP_DIR;
+
+      esbuild.build({
+        entryPoints: [path.resolve("src/index.ts")],
+        bundle: true,
+        platform: "node",
+        outfile: path.resolve(app_dir, "index.js"),
+      });
+      fs.readdir(path.resolve("src/handlers")).then((dir) =>
+        esbuild.build({
+          entryPoints: dir.map((d) => path.resolve("src/handlers", d)),
+          bundle: true,
+          platform: "node",
+          outdir: path.resolve(app_dir, "handlers"),
+        })
+      );
+    </script>
+  </task>
+  <task name="dev">
+    <dep task="build" />
+    <script type="shell/bash">
+      node .
+    </script>
+  </task>
+</app>

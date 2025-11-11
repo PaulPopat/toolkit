@@ -1,0 +1,21 @@
+{
+  "name": "@toolkit/url",
+  "version": "0.0.2",
+  "description": "Easy type serialisation",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "devDependencies": {
+    "@types/node": "^24.0.8",
+    "esbuild": "^0.25.5",
+    "typescript": "^5.8.3"
+  },
+  "files": [
+    "dist/*"
+  ]
+}
